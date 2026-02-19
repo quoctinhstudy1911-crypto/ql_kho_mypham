@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- SEARCH -->
+    <record model="ir.ui.view" id="view_product_search">
+        <field name="name">product.search</field>
+        <field name="model">mp.product</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Product">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- TREE -->
+    <record model="ir.ui.view" id="view_product_tree">
+        <field name="name">product.tree</field>
+        <field name="model">mp.product</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Sản phẩm">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record model="ir.ui.view" id="view_product_form">
+        <field name="name">product.form</field>
+        <field name="model">mp.product</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Sản phẩm">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record model="ir.actions.act_window" id="action_product">
+        <field name="name">Sản phẩm</field>
+        <field name="res_model">mp.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</data>
+</openerp>
