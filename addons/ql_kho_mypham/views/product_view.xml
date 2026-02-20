@@ -27,16 +27,24 @@
     </record>
 
     <!-- FORM -->
-    <record model="ir.ui.view" id="view_product_form">
-        <field name="name">product.form</field>
-        <field name="model">mp.product</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="Sản phẩm">
+<record model="ir.ui.view" id="view_product_form">
+    <field name="name">mp.product.form</field>
+    <field name="model">mp.product</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+
+        <form string="Sản phẩm">
+
+            <!-- thông tin chính -->
+            <group>
                 <field name="name"/>
-            </form>
-        </field>
-    </record>
+                <field name="category_id"/>
+            </group>
+
+        </form>
+
+    </field>
+</record>
 
     <!-- ACTION -->
     <record model="ir.actions.act_window" id="action_product">
