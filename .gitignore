@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Odoo
+*.log
+*.pid
+*.wkhtmltopdf
+*.db
+*.rdb
+
+# filestore (CỰC KỲ QUAN TRỌNG)
+.filestore/
+data_dir/
+filestore/
+
+# Local config
+odoo.conf
+*.conf
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Backup
+*.bak
+*.swp
+*.tmp
+
+# PostgreSQL dumps
+*.sql

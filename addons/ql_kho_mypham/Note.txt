@@ -1,4 +1,8 @@
 == CÁCH CODE THUẬN TIỆN HƠN ==
+
+
+
+
 Bước 1 — Tạo thư mục dev riêng
 Tạo: D:\odoo_dev\addons
 
@@ -18,4 +22,3 @@ Bước 4 — Restart Odoo + Update module
 
 Update list module → upgrade module
 ================================================================================
-addons_path = C:\Program Files (x86)\OpenERP 7.0-20161204\server,D:\odoo_dev\addons
