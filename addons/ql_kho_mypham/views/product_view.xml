@@ -4,47 +4,121 @@
 
     <!-- SEARCH -->
     <record model="ir.ui.view" id="view_product_search">
-        <field name="name">product.search</field>
+        <field name="name">mp.product.search</field>
         <field name="model">mp.product</field>
         <field name="type">search</field>
         <field name="arch" type="xml">
-            <search string="Search Product">
+            <search string="Tìm sản phẩm">
+
+                <!-- tìm nhanh -->
+                <field name="code"/>
                 <field name="name"/>
+
+                <!-- lọc -->
+                <filter string="Đang kinh doanh" domain="[('active','=',True)]"/>
+                <filter string="Ngưng kinh doanh" domain="[('active','=',False)]"/>
+
+                <!-- group -->
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Danh mục" context="{'group_by':'category_id'}"/>
+                </group>
+
             </search>
         </field>
     </record>
 
+
     <!-- TREE -->
     <record model="ir.ui.view" id="view_product_tree">
-        <field name="name">product.tree</field>
+        <field name="name">mp.product.tree</field>
         <field name="model">mp.product</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Sản phẩm">
+            <tree string="Sản phẩm" colors="gray:active==False">
+                <field name="code"/>
                 <field name="name"/>
+                <field name="category_id"/>
+                <field name="active"/>
+
             </tree>
         </field>
     </record>
 
-    <!-- FORM -->
+
+   <!-- FORM -->
 <record model="ir.ui.view" id="view_product_form">
     <field name="name">mp.product.form</field>
     <field name="model">mp.product</field>
     <field name="type">form</field>
     <field name="arch" type="xml">
 
-        <form string="Sản phẩm">
+        <form string="Sản phẩm" version="7.0">
+            <sheet>
 
-            <!-- thông tin chính -->
-            <group>
-                <field name="name"/>
-                <field name="category_id"/>
-            </group>
+                <!-- IMAGE -->
+                <field name="image"
+                       widget="image"
+                       class="oe_left oe_avatar"
+                       filename="image_filename"/>
 
+                <!-- TITLE BLOCK -->
+                <div class="oe_title" style="margin-bottom:25px;">
+
+                    <div style="font-weight:bold;">
+                        Mã sản phẩm:
+                    </div>
+
+                    <h2 style="margin-bottom:15px;"> 
+                        <field name="code"
+                        readonly="1"
+                         attrs="{'invisible':[('code','=','/')]}"/>
+                    </h2>
+
+                    <div style="font-weight:bold;">
+                        Tên sản phẩm:
+                    </div>
+
+                    <h2>
+                        <field name="name"
+                               placeholder="Nhập tên sản phẩm"/>
+                    </h2>
+
+                    <div class="oe_grey" style="margin-top:8px;">
+                        Hàng hóa được kinh doanh trong kho mỹ phẩm
+                    </div>
+
+                </div>
+
+                <!-- THÔNG TIN CHUNG -->
+                <group string="Thông tin chung" col="4" style="margin-top:20px;">
+
+                    <field name="category_id"/>
+                    <field name="active"/>
+
+                </group>
+
+                <!-- KHOẢNG CÁCH NHẸ -->
+                <div style="margin-top:20px;"></div>
+
+                <!-- NOTEBOOK -->
+                <notebook>
+
+                    <page string="Mô tả">
+                        <group style="margin-top:10px;">
+                            <field name="note"
+                                   nolabel="1"
+                                   placeholder="Nhập mô tả chi tiết sản phẩm..."/>
+                        </group>
+                    </page>
+
+                </notebook>
+
+            </sheet>
         </form>
 
     </field>
 </record>
+
 
     <!-- ACTION -->
     <record model="ir.actions.act_window" id="action_product">
@@ -52,6 +126,7 @@
         <field name="res_model">mp.product</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_product_search"/>
     </record>
 
 </data>

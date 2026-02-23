@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- 1️ Khai báo loại sequence -->
+        <record id="seq_type_mp_product" model="ir.sequence.type">
+            <field name="name">Product</field>
+            <field name="code">mp.product</field>
+        </record>
+
+        <!-- 2️ Sequence -->
+        <record id="seq_mp_product" model="ir.sequence">
+            <field name="name">Product Sequence</field>
+            <field name="code">mp.product</field>
+            <field name="prefix">SP</field>
+            <field name="padding">4</field>
+        </record>
+
+    </data>
+</openerp>

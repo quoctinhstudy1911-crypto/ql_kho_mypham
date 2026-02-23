@@ -6,7 +6,7 @@
     <menuitem id="mp_parent" name="Quản lý kho mỹ phẩm" icon="STOCK_OPEN"/>
 
     <!-- NHÓM -->
-    <menuitem id="menu_mp_master" name="Dữ liệu" parent="mp_parent"/>
+    <menuitem id="menu_mp_master" name="Danh mục - Sản phẩm" parent="mp_parent"/>
     <menuitem id="menu_mp_stock" name="Kho" parent="mp_parent"/>
 
     <!-- CATEGORY -->

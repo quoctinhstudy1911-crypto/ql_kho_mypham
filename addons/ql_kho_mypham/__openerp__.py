@@ -19,6 +19,7 @@ Module quan ly kho my pham
 
     # LOAD GIAO DIEN
     "update_xml": [
+        "sequence.xml",
         "views/category_view.xml",
         "views/product_view.xml",
         "views/stock_document_view.xml",
