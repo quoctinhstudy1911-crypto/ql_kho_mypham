@@ -8,6 +8,17 @@ class mp_product(osv.osv):
     _order = 'code'
 
     # ========================
+    # HÀM TÍNH TỒN KHO
+    # ========================
+    def _compute_qty(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        doc_obj = self.pool.get('mp.stock.document')
+        for product in self.browse(cr, uid, ids, context=context):
+            qty = doc_obj._get_product_qty(cr, uid, product.id, context)
+            res[product.id] = qty
+        return res
+
+    # ========================
     # CẤU TRÚC DỮ LIỆU
     # ========================
     _columns = {
@@ -36,6 +47,12 @@ class mp_product(osv.osv):
 
         'image': fields.binary(u'Hình ảnh'),
         'image_filename': fields.char(u'Tên file ảnh'),
+        'qty_available': fields.function(
+            _compute_qty,
+            type='float',
+            string='Tồn kho',
+            store=False
+)
     }
 
     _defaults = {
