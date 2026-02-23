@@ -5,7 +5,7 @@ class mp_stock_document(osv.osv):
     _name = 'mp.stock.document'
 
     _columns = {
-        'name': fields.char('Số phiếu', required=True),
+        'name': fields.char('Số phiếu'),
         'date': fields.date('Ngày', required=True),
         'type': fields.selection(
     [('in','Nhập'),('out','Xuất')],
@@ -21,9 +21,12 @@ class mp_stock_document(osv.osv):
      'unique(name)',
      u'Số phiếu không được trùng!')
 ]
+    
     _defaults = {
-        'state': 'draft',
+    'state': 'draft',
+    'name': '/',
     }
+
 
     def _get_product_qty(self, cr, uid, product_id, context=None):
         qty = 0.0
@@ -83,4 +86,10 @@ class mp_stock_document(osv.osv):
                 )
         return super(mp_stock_document, self).unlink(cr, uid, ids, context=context)
 
+    def create(self, cr, uid, vals, context=None):
+        if not vals.get('name') or vals.get('name') == '/':
+            seq_code = 'mp.stock.document.in' if vals.get('type') == 'in' else 'mp.stock.document.out'
+            seq_obj = self.pool.get('ir.sequence')
+            vals['name'] = seq_obj.get(cr, uid, seq_code, context=context)
+        return super(mp_stock_document, self).create(cr, uid, vals, context=context)
 mp_stock_document()

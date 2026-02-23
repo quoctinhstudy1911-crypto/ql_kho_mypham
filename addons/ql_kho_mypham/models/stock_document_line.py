@@ -38,7 +38,11 @@ class mp_stock_document_line(osv.osv):
          u'So lượng phải lớn hơn 0',
          ['quantity'])
     ]
-
+    _sql_constraints = [
+    ('unique_product_per_document',
+     'unique(document_id, product_id)',
+     u'Mỗi sản phẩm chỉ được xuất hiện 1 lần trong phiếu!')
+    ]
     # ==========================================
     # KHÔNG CHO SỬA KHI PHIẾU DONE
     # ==========================================

@@ -26,6 +26,13 @@
               id="menu_stock"
               parent="menu_mp_stock"
               string="Phiếu kho"/>
+            
+    <menuitem action="action_stock_report"
+              id="menu_stock_report"
+              parent="menu_mp_stock"
+              string="Báo cáo tồn kho"/>
+             
+       
 
 </data>
 </openerp>

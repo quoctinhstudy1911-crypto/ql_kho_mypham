@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+<!-- sequences for stock documents -->
+<record id="seq_type_stock_document_in" model="ir.sequence.type">
+    <field name="name">Stock Document Import</field>
+    <field name="code">mp.stock.document.in</field>
+</record>
 
+<record id="seq_stock_document_in" model="ir.sequence">
+    <field name="name">Stock Document Import</field>
+    <field name="code">mp.stock.document.in</field>
+    <field name="prefix">PN</field>
+    <field name="padding">4</field>
+    <field name="number_next">1</field>
+</record>
+
+<record id="seq_type_stock_document_out" model="ir.sequence.type">
+    <field name="name">Stock Document Export</field>
+    <field name="code">mp.stock.document.out</field>
+</record>
+
+<record id="seq_stock_document_out" model="ir.sequence">
+    <field name="name">Stock Document Export</field>
+    <field name="code">mp.stock.document.out</field>
+    <field name="prefix">PX</field>
+    <field name="padding">4</field>
+    <field name="number_next">1</field>
+</record>
         <!-- 1️ Khai báo loại sequence -->
         <record id="seq_type_mp_product" model="ir.sequence.type">
             <field name="name">Product</field>

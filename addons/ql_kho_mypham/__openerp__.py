@@ -23,6 +23,7 @@ Module quan ly kho my pham
         "views/category_view.xml",
         "views/product_view.xml",
         "views/stock_document_view.xml",
+        "views/stock_report_view.xml",
         "views/menu.xml"
     ],
 

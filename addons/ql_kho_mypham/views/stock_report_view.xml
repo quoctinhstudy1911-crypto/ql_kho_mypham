@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- ============================= -->
+    <!-- TREE VIEW: BÁO CÁO TỒN KHO -->
+    <!-- ============================= -->
+    <record id="view_product_stock_report_tree" model="ir.ui.view">
+        <field name="name">product.stock.report.tree</field>
+        <field name="model">mp.product</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Báo cáo tồn kho"
+                  create="false"
+                  edit="false"
+                  delete="false">
+
+                <field name="code" string="Mã sản phẩm"/>
+                <field name="name" string="Tên sản phẩm"/>
+                <field name="category_id" string="Danh mục"/>
+                <field name="qty_available" string="Tồn kho"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- ============================= -->
+    <!-- SEARCH VIEW: BÁO CÁO -->
+    <!-- ============================= -->
+    <record id="view_product_stock_report_search" model="ir.ui.view">
+        <field name="name">product.stock.report.search</field>
+        <field name="model">mp.product</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm tồn kho">
+
+                <field name="name"/>
+                <field name="category_id"/>
+
+                <!-- Filter chỉ hiển thị sản phẩm còn tồn -->
+                <filter string="Còn tồn"
+                        domain="[('qty_available','>',0)]"/>
+
+                <!-- Filter tồn bằng 0 -->
+                <filter string="Hết hàng"
+                        domain="[('qty_available','=',0)]"/>
+
+                <!-- Group By -->
+                <group expand="0" string="Nhóm theo">
+                    <filter string="Danh mục"
+                            context="{'group_by':'category_id'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- ============================= -->
+    <!-- ACTION -->
+    <!-- ============================= -->
+    <record id="action_stock_report" model="ir.actions.act_window">
+        <field name="name">Báo cáo tồn kho</field>
+        <field name="res_model">mp.product</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_stock_report_tree"/>
+        <field name="search_view_id" ref="view_product_stock_report_search"/>
+        <field name="context">{}</field>
+    </record>
+
+
+    <!-- ============================= -->
+    <!-- MENU -->
+    <!-- ============================= -->
+    <menuitem id="menu_stock_report"
+              name="Báo cáo tồn kho"
+              parent="menu_mp_stock"
+              action="action_stock_report"/>
+
+</data>
+</openerp>
