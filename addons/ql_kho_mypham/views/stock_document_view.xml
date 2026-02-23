@@ -26,15 +26,70 @@
         </field>
     </record>
 
-    <!-- FORM -->
+    <!-- FORM - ĐÃ SỬA -->
     <record model="ir.ui.view" id="view_stock_form">
         <field name="name">stock.form</field>
         <field name="model">mp.stock.document</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Phiếu kho">
-                <field name="name"/>
-            </form>
+   <form string="Phieu kho" version="7.0">
+
+    <!-- HEADER -->
+    <header>
+        <button name="action_done"
+                string="Hoàn tất"
+                type="object"
+                states="draft"
+                class="oe_highlight"/>
+
+        <field name="state"
+               widget="statusbar"
+               statusbar_visible="draft,done"
+               readonly="1"/>
+    </header>
+
+    <sheet>
+
+        <!-- TITLE GIỐNG PURCHASE -->
+        <div class="oe_title">
+            <h1>
+                <label string="Phiếu kho "/>
+                <field name="name" class="oe_inline" attrs="{'readonly':[('state','=','done')]}"/>
+            </h1>
+        </div>
+
+        <!-- THÔNG TIN CHÍNH -->
+        <group>
+            <group>
+                <field name="date"
+                       attrs="{'readonly':[('state','=','done')]}"/>
+                <field name="type"
+                       attrs="{'readonly':[('state','=','done')]}"/>
+            </group>
+            <group>
+                <!-- có thể thêm note nếu muốn -->
+            </group>
+        </group>
+
+        <!-- NOTEBOOK -->
+        <notebook>
+
+            <page string="Chi tiết sản phẩm">
+                <field name="line_ids"
+                       attrs="{'readonly':[('state','=','done')]}">
+                    <tree editable="bottom">
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                        <field name="note"/>
+                    </tree>
+                </field>
+            </page>
+
+        </notebook>
+
+    </sheet>
+
+</form>
         </field>
     </record>
 
