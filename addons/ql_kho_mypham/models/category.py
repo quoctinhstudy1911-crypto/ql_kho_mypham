@@ -88,7 +88,7 @@ class mp_category(osv.osv):
             if product_ids:
                 raise osv.except_osv(
                     _(u'Không thể xóa!'),
-                    _(u'Danh mục "%s" đang được sử dụng bởi sản phẩm.') % (category.name or u'')
+                    _(u'Danh mục "%s" đang được sử dụng. Hãy chuyển sang trạng thái "Còn sử dụng = False" thay vì xóa.') % (category.name or u'')
                 )
 
         return super(mp_category, self).unlink(cr, uid, ids, context=context)

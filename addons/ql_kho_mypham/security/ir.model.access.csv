@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_category_user,category user,model_mp_category,ql_kho_mypham.group_stock_user,1,0,0,0
+access_category_manager,category manager,model_mp_category,ql_kho_mypham.group_stock_manager,1,1,1,1
+
+access_product_user,product user,model_mp_product,ql_kho_mypham.group_stock_user,1,0,0,0
+access_product_manager,product manager,model_mp_product,ql_kho_mypham.group_stock_manager,1,1,1,1
+
+access_stock_user,stock user,model_mp_stock_document,ql_kho_mypham.group_stock_user,1,1,1,0
+access_stock_manager,stock manager,model_mp_stock_document,ql_kho_mypham.group_stock_manager,1,1,1,1
+
+access_stock_line_user,stock line user,model_mp_stock_document_line,ql_kho_mypham.group_stock_user,1,1,1,0
+access_stock_line_manager,stock line manager,model_mp_stock_document_line,ql_kho_mypham.group_stock_manager,1,1,1,1

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <!-- ========================= -->
+    <!-- CATEGORY -->
+    <!-- ========================= -->
+
+    <record id="demo_cat_skin" model="mp.category">
+        <field name="name">Skin Care</field>
+    </record>
+
+    <record id="demo_cat_makeup" model="mp.category">
+        <field name="name">Make Up</field>
+    </record>
+
+    <!-- ========================= -->
+    <!-- PRODUCT -->
+    <!-- ========================= -->
+
+    <record id="demo_product_kemduong" model="mp.product">
+        <field name="code">SP0001</field>
+        <field name="name">Kem Dưỡng Ẩm</field>
+        <field name="category_id" ref="demo_cat_skin"/>
+    </record>
+
+    <record id="demo_product_son" model="mp.product">
+        <field name="code">SP0002</field>
+        <field name="name">Son Lì</field>
+        <field name="category_id" ref="demo_cat_makeup"/>
+    </record>
+
+    <!-- ========================= -->
+    <!-- PHIẾU NHẬP -->
+    <!-- ========================= -->
+
+    <record id="demo_doc_in_1" model="mp.stock.document">
+        <field name="name">PN0001</field>
+        <field name="date">2026-02-01</field>
+        <field name="type">in</field>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_doc_in_line_1" model="mp.stock.document.line">
+        <field name="document_id" ref="demo_doc_in_1"/>
+        <field name="product_id" ref="demo_product_kemduong"/>
+        <field name="quantity">100</field>
+    </record>
+
+    <record id="demo_doc_in_line_2" model="mp.stock.document.line">
+        <field name="document_id" ref="demo_doc_in_1"/>
+        <field name="product_id" ref="demo_product_son"/>
+        <field name="quantity">50</field>
+    </record>
+
+    <!-- GỌI ACTION DONE -->
+    <function model="mp.stock.document" name="action_done">
+        <value eval="[ref('demo_doc_in_1')]"/>
+    </function>
+
+
+    <!-- ========================= -->
+    <!-- PHIẾU XUẤT -->
+    <!-- ========================= -->
+
+    <record id="demo_doc_out_1" model="mp.stock.document">
+        <field name="name">PX0001</field>
+        <field name="date">2026-02-05</field>
+        <field name="type">out</field>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_doc_out_line_1" model="mp.stock.document.line">
+        <field name="document_id" ref="demo_doc_out_1"/>
+        <field name="product_id" ref="demo_product_kemduong"/>
+        <field name="quantity">20</field>
+    </record>
+
+    <!-- GỌI ACTION DONE -->
+    <function model="mp.stock.document" name="action_done">
+        <value eval="[ref('demo_doc_out_1')]"/>
+    </function>
+
+</data>
+</openerp>

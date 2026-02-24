@@ -5,15 +5,15 @@ class mp_stock_document(osv.osv):
     _name = 'mp.stock.document'
 
     _columns = {
-        'name': fields.char('Số phiếu'),
-        'date': fields.date('Ngày', required=True),
+        'name': fields.char(u'Số phiếu', required=True),
+        'date': fields.date(u'Ngày', required=True),
         'type': fields.selection(
-    [('in','Nhập'),('out','Xuất')],
-    'Loại',
+    [('in',u'Nhập'),('out',u'Xuất')],
+    u'Loại',
     required=True
 ),
-        'state': fields.selection([('draft','Nhập liệu'),('done','Hoàn tất')],'Trạng thái'),
-        'line_ids': fields.one2many('mp.stock.document.line','document_id','Chi tiet'),
+        'state': fields.selection([('draft',u'Nhập liệu'),('done',u'Hoàn tất')],u'Trạng thái'),
+        'line_ids': fields.one2many('mp.stock.document.line','document_id',u'Chi tiết phiếu'),
     }
 
     _sql_constraints = [

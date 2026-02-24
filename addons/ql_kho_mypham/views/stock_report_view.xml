@@ -68,15 +68,5 @@
         <field name="search_view_id" ref="view_product_stock_report_search"/>
         <field name="context">{}</field>
     </record>
-
-
-    <!-- ============================= -->
-    <!-- MENU -->
-    <!-- ============================= -->
-    <menuitem id="menu_stock_report"
-              name="Báo cáo tồn kho"
-              parent="menu_mp_stock"
-              action="action_stock_report"/>
-
 </data>
 </openerp>

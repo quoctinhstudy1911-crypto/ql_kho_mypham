@@ -7,20 +7,20 @@ class mp_stock_document_line(osv.osv):
     _columns = {
         'document_id': fields.many2one(
             'mp.stock.document',
-            'Phiếu',
+            u'Phiếu',
             required=True
         ),
         'product_id': fields.many2one(
             'mp.product',
-            'Sản phẩm',
+            u'Sản phẩm',
             required=True
         ),
         'quantity': fields.float(
-            'Số lượng',
+            u'Số lượng',
             required=True
         ),
         'note': fields.char(
-            'Ghi chú'
+            u'Ghi chú'
         ),
     }
 
@@ -35,7 +35,7 @@ class mp_stock_document_line(osv.osv):
 
     _constraints = [
         (_check_quantity_positive,
-         u'So lượng phải lớn hơn 0',
+         u'Số lượng phải lớn hơn 0',
          ['quantity'])
     ]
     _sql_constraints = [

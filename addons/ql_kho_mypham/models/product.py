@@ -57,7 +57,7 @@ class mp_product(osv.osv):
 
     _defaults = {
         'active': True,
-        'code': '/',   # 👈 cực kỳ quan trọng
+        'code': '/',
     }
 
     # ========================

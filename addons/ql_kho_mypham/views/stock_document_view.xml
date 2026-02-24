@@ -3,36 +3,73 @@
 <data>
 
     <!-- SEARCH -->
-    <record model="ir.ui.view" id="view_stock_search">
-        <field name="name">stock.search</field>
-        <field name="model">mp.stock.document</field>
-        <field name="type">search</field>
-        <field name="arch" type="xml">
-            <search string="Search Stock Document">
-                <field name="name"/>
-            </search>
-        </field>
-    </record>
+<record model="ir.ui.view" id="view_stock_search">
+    <field name="name">stock.search</field>
+    <field name="model">mp.stock.document</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+
+        <search string="Tìm phiếu kho">
+
+            <!-- Tìm nhanh -->
+            <field name="name"/>
+            <field name="date"/>
+
+            <!-- Bộ lọc -->
+            <filter string="Phiếu nhập"
+                    domain="[('type','=','in')]"/>
+
+            <filter string="Phiếu xuất"
+                    domain="[('type','=','out')]"/>
+
+            <filter string="Đã hoàn tất"
+                    domain="[('state','=','done')]"/>
+
+            <filter string="Nháp"
+                    domain="[('state','=','draft')]"/>
+
+            <!-- Group by -->
+            <group expand="0" string="Nhóm theo">
+                <filter string="Loại"
+                        context="{'group_by':'type'}"/>
+
+                <filter string="Trạng thái"
+                        context="{'group_by':'state'}"/>
+
+                <filter string="Ngày"
+                        context="{'group_by':'date'}"/>
+            </group>
+
+        </search>
+
+    </field>
+</record>
 
     <!-- TREE -->
     <record model="ir.ui.view" id="view_stock_tree">
-        <field name="name">stock.tree</field>
-        <field name="model">mp.stock.document</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree string="Phiếu kho">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
+    <field name="name">stock.tree</field>
+    <field name="model">mp.stock.document</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+        <tree string="Phiếu kho"
+              colors="green:state=='done';gray:state=='draft'">
 
-    <!-- FORM - ĐÃ SỬA -->
+            <field name="name"/>
+            <field name="date"/>
+            <field name="type"/>
+            <field name="state"/>
+
+        </tree>
+    </field>
+</record>
+
+    <!-- FORM -->
     <record model="ir.ui.view" id="view_stock_form">
         <field name="name">stock.form</field>
         <field name="model">mp.stock.document</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-   <form string="Phieu kho" version="7.0">
+   <form string="Phiếu kho" version="7.0">
 
     <!-- HEADER -->
     <header>
@@ -54,7 +91,8 @@
         <div class="oe_title">
             <h1>
                 <label string="Phiếu kho "/>
-                <field name="name" class="oe_inline" readonly="1"/>
+                <field name="name" class="oe_inline" readonly="1"
+                       attrs="{'invisible':[('name','=','/')]}"/>
             </h1>
         </div>
 
