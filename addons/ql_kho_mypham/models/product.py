@@ -7,6 +7,17 @@ class mp_product(osv.osv):
     _description = u'Sản phẩm mỹ phẩm'
     _order = 'code'
 
+    def _get_product_from_document(self, cr, uid, ids, context=None):
+        result = []
+        doc_obj = self.pool.get('mp.stock.document')
+
+        for doc in doc_obj.browse(cr, uid, ids, context=context):
+            for line in doc.line_ids:
+                if line.product_id:
+                    result.append(line.product_id.id)
+
+        return list(set(result))
+    
     # ========================
     # HÀM LẤY DANH SÁCH SẢN PHẨM TỪ STOCK LINE
     # DÙNG ĐỂ TRIGGER TÍNH LẠI TỒN KHO
@@ -66,6 +77,11 @@ class mp_product(osv.osv):
                             'mp.stock.document.line': (
                                 _get_product_ids,
                                 ['product_id', 'quantity'],
+                                10
+                            ),
+                            'mp.stock.document': (
+                                _get_product_from_document,
+                                ['state', 'type'],
                                 10
                             )
                         }
