@@ -8,6 +8,17 @@ class mp_product(osv.osv):
     _order = 'code'
 
     # ========================
+    # HÀM LẤY DANH SÁCH SẢN PHẨM TỪ STOCK LINE
+    # DÙNG ĐỂ TRIGGER TÍNH LẠI TỒN KHO
+    # ========================
+
+    def _get_product_ids(self, cr, uid, ids, context=None):
+        result = []
+        for line in self.pool.get('mp.stock.document.line').browse(cr, uid, ids, context=context):
+            if line.product_id:
+                result.append(line.product_id.id)
+        return list(set(result))
+    # ========================
     # HÀM TÍNH TỒN KHO
     # ========================
     def _compute_qty(self, cr, uid, ids, name, args, context=None):
@@ -16,7 +27,7 @@ class mp_product(osv.osv):
         for product in self.browse(cr, uid, ids, context=context):
             qty = doc_obj._get_product_qty(cr, uid, product.id, context)
             res[product.id] = qty
-        return res
+        return res  
 
     # ========================
     # CẤU TRÚC DỮ LIỆU
@@ -48,11 +59,17 @@ class mp_product(osv.osv):
         'image': fields.binary(u'Hình ảnh'),
         'image_filename': fields.char(u'Tên file ảnh'),
         'qty_available': fields.function(
-            _compute_qty,
-            type='float',
-            string='Tồn kho',
-            store=False
-)
+                        _compute_qty,
+                        type='float',
+                        string='Tồn kho',
+                        store={
+                            'mp.stock.document.line': (
+                                _get_product_ids,
+                                ['product_id', 'quantity'],
+                                10
+                            )
+                        }
+                    )
     }
 
     _defaults = {

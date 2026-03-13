@@ -19,13 +19,13 @@
     <!-- ========================= -->
 
     <record id="demo_product_kemduong" model="mp.product">
-        <field name="code">SP0001</field>
+        <field name="code">/</field>
         <field name="name">Kem Dưỡng Ẩm</field>
         <field name="category_id" ref="demo_cat_skin"/>
     </record>
 
     <record id="demo_product_son" model="mp.product">
-        <field name="code">SP0002</field>
+        <field name="code">/</field>
         <field name="name">Son Lì</field>
         <field name="category_id" ref="demo_cat_makeup"/>
     </record>
@@ -35,7 +35,7 @@
     <!-- ========================= -->
 
     <record id="demo_doc_in_1" model="mp.stock.document">
-        <field name="name">PN0001</field>
+        <field name="name">/</field>
         <field name="date">2026-02-01</field>
         <field name="type">in</field>
         <field name="state">draft</field>
@@ -64,7 +64,7 @@
     <!-- ========================= -->
 
     <record id="demo_doc_out_1" model="mp.stock.document">
-        <field name="name">PX0001</field>
+        <field name="name">/</field>
         <field name="date">2026-02-05</field>
         <field name="type">out</field>
         <field name="state">draft</field>

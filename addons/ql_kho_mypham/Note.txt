@@ -1,4 +1,0 @@
-== NHỮNG GÌ CẦN THỰC HIỆN THÊM CHO ĐỒ ÁN ==
-- Làm security
-- Nếu mở rộng, hệ thống có thể bổ sung cost_price và phương pháp tính
-giá vốn như Moving Average hoặc FIFO.
