@@ -84,7 +84,7 @@ class mp_product(osv.osv):
                             ),
                             'mp.stock.document': (
                                 _get_product_from_document,
-                                ['state', 'type'],
+                                ['state', 'type', 'line_ids'],
                                 10
                             )
                         }
