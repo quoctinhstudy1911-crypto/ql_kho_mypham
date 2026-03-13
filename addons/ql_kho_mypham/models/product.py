@@ -6,7 +6,10 @@ class mp_product(osv.osv):
     _name = 'mp.product'
     _description = u'Sản phẩm mỹ phẩm'
     _order = 'code'
-
+    # ========================
+    #HÀM LẤY DANH SÁCH ID SẢN PHẨM TỪ STOCK LINE
+    #Mục đích: Dùng để làm trigger tính lại tồn kho khi chứng từ thay đổi
+    # ========================
     def _get_product_from_document(self, cr, uid, ids, context=None):
         result = []
         doc_obj = self.pool.get('mp.stock.document')
